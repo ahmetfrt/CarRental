@@ -1,64 +1,25 @@
-package com.example.demo.domain;
+package com.Project.CarRental.Domain;
 
-import java.util.List;
+import jakarta.persistence.*;
 
+@Entity
 public class Location {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String code;
     private String name;
 
-    // A location can have many cars
-    private List<Car> cars;
+    public Location() {}
 
-    // A location can be the pickup point for many reservations
-    private List<Reservation> pickupReservations;
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    // A location can be the dropoff point for many reservations
-    private List<Reservation> dropoffReservations;
+    public String getCode() { return code; }
+    public void setCode(String code) { this.code = code; }
 
-    // Constructor
-    public Location() {
-    }
-
-    // --- Getters and Setters ---
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Car> getCars() {
-        return cars;
-    }
-
-    public void setCars(List<Car> cars) {
-        this.cars = cars;
-    }
-
-    public List<Reservation> getPickupReservations() {
-        return pickupReservations;
-    }
-
-    public void setPickupReservations(List<Reservation> pickupReservations) {
-        this.pickupReservations = pickupReservations;
-    }
-
-    public List<Reservation> getDropoffReservations() {
-        return dropoffReservations;
-    }
-
-    public void setDropoffReservations(List<Reservation> dropoffReservations) {
-        this.dropoffReservations = dropoffReservations;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 }

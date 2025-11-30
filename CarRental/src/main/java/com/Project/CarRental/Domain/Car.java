@@ -1,8 +1,13 @@
-package com.example.demo.domain;
-
+package com.Project.CarRental.Domain;
+import jakarta.persistence.*;
 import java.util.List;
 
+@Entity
 public class Car {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String barcode;
     private String licensePlateNumber;
@@ -15,111 +20,51 @@ public class Car {
     private String category;
     private String status;
 
-    // A car is at one location
+    @ManyToOne(fetch = FetchType.LAZY) // Compliance with Rule 13
+    @JoinColumn(name = "location_id")
     private Location location;
 
-    // A car can be part of many reservations
+    @OneToMany(mappedBy = "car")
     private List<Reservation> reservations;
 
-    // Constructor
-    public Car() {
-    }
+    public Car() {}
 
-    // --- Getters and Setters ---
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getBarcode() {
-        return barcode;
-    }
+    public String getBarcode() { return barcode; }
+    public void setBarcode(String barcode) { this.barcode = barcode; }
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
+    public String getLicensePlateNumber() { return licensePlateNumber; }
+    public void setLicensePlateNumber(String licensePlateNumber) { this.licensePlateNumber = licensePlateNumber; }
 
-    public String getLicensePlateNumber() {
-        return licensePlateNumber;
-    }
+    public int getNumberOfSeats() { return numberOfSeats; }
+    public void setNumberOfSeats(int numberOfSeats) { this.numberOfSeats = numberOfSeats; }
 
-    public void setLicensePlateNumber(String licensePlateNumber) {
-        this.licensePlateNumber = licensePlateNumber;
-    }
+    public String getBrand() { return brand; }
+    public void setBrand(String brand) { this.brand = brand; }
 
-    public int getNumberOfSeats() {
-        return numberOfSeats;
-    }
+    public String getModel() { return model; }
+    public void setModel(String model) { this.model = model; }
 
-    public void setNumberOfSeats(int numberOfSeats) {
-        this.numberOfSeats = numberOfSeats;
-    }
+    public double getMileage() { return mileage; }
+    public void setMileage(double mileage) { this.mileage = mileage; }
 
-    public String getBrand() {
-        return brand;
-    }
+    public String getTransmissionType() { return transmissionType; }
+    public void setTransmissionType(String transmissionType) { this.transmissionType = transmissionType; }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
+    public double getDailyPrice() { return dailyPrice; }
+    public void setDailyPrice(double dailyPrice) { this.dailyPrice = dailyPrice; }
 
-    public String getModel() {
-        return model;
-    }
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
-    public double getMileage() {
-        return mileage;
-    }
+    public Location getLocation() { return location; }
+    public void setLocation(Location location) { this.location = location; }
 
-    public void setMileage(double mileage) {
-        this.mileage = mileage;
-    }
-
-    public String getTransmissionType() {
-        return transmissionType;
-    }
-
-    public void setTransmissionType(String transmissionType) {
-        this.transmissionType = transmissionType;
-    }
-
-    public double getDailyPrice() {
-        return dailyPrice;
-    }
-
-    public void setDailyPrice(double dailyPrice) {
-        this.dailyPrice = dailyPrice;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
+    public List<Reservation> getReservations() { return reservations; }
+    public void setReservations(List<Reservation> reservations) { this.reservations = reservations; }
 }

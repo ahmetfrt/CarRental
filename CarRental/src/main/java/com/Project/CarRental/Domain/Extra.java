@@ -1,42 +1,25 @@
-package com.example.demo.domain;
+package com.Project.CarRental.Domain;
+import jakarta.persistence.*;
 
-import java.util.List;
-
+@Entity
 public class Extra {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
     private double price;
 
-    // An extra can be part of many reservations
-    private List<Reservation> reservations;
+    public Extra() {}
 
-    // Constructor
-    public Extra() {
-    }
 
-    // --- Getters and Setters ---
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
 }
